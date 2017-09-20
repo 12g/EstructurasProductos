@@ -10,7 +10,12 @@ package base;
  * @author blamadrid
  */
 public class Nodo {
+    private String valor;
     private Nodo siguiente;
+
+    public Nodo() {
+        siguiente = null;
+    }
 
     public Nodo(Nodo siguiente) {
         setSiguiente(siguiente);
@@ -23,4 +28,10 @@ public class Nodo {
     public void setSiguiente(Nodo siguiente) {
         this.siguiente = siguiente;
     }
+    
+    @Override
+    public String toString() {
+        return valor;
+    }
+    
 }

@@ -15,11 +15,22 @@ public class Pila {
     public Pila() {
     }
     
-    public void agregar(){
-        
+    public void agregar(Nodo nuevo){
+        if (cima == null) {
+            cima = nuevo;
+        }
+        else {
+            nuevo.setSiguiente(cima);
+            this.cima = nuevo;
+        }
     }
     
     public void escupir(){
-        
+        if (cima != null) {
+            System.out.println( cima.toString() );
+        }
+        else {
+            System.out.println("La pila no posee elementos!");
+        }
     }
 }
