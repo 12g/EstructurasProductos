@@ -14,7 +14,7 @@ public class Nodo {
     private Nodo siguiente;
 
     public Nodo() {
-        siguiente = null;
+        this.siguiente = null;
     }
 
     public Nodo(Nodo siguiente) {

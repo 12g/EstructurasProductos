@@ -11,6 +11,7 @@ package base;
  */
 public class Pila {
     private Nodo cima;
+    protected int cantidad;
 
     public Pila() {
     }
@@ -23,11 +24,14 @@ public class Pila {
             nuevo.setSiguiente(cima);
             this.cima = nuevo;
         }
+        ++cantidad;
     }
     
     public void escupir(){
         if (cima != null) {
             System.out.println( cima.toString() );
+            this.cima = this.cima.getSiguiente();
+            --cantidad;
         }
         else {
             System.out.println("La pila no posee elementos!");

@@ -11,9 +11,11 @@ package base;
  */
 public class Lista {
     private Nodo base;
+    protected int cantidad;
 
     public Lista() {
         this.base = null;
+        this.cantidad = 0;
     }
     
     public void agregar(Nodo nuevo) {
@@ -21,8 +23,18 @@ public class Lista {
             this.base = nuevo;
         }
         else {
-            base.setSiguiente(nuevo);
+            if (cantidad == 1) {
+                base.setSiguiente(nuevo);
+            }
+            else {
+                Nodo puntero = base;
+                while (puntero.getSiguiente() != null){
+                    puntero = puntero.getSiguiente();
+                };
+                puntero.setSiguiente(nuevo);
+            }
         }
+        ++cantidad;
     }
     
     public void mostrar(){
@@ -32,8 +44,16 @@ public class Lista {
                 System.out.println( puntero.toString() );
                 puntero = puntero.getSiguiente();
             }
-            while (base != null);
+            while (puntero != null);
             System.out.println("");
         }
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 }
