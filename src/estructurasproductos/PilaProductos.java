@@ -11,4 +11,9 @@ package estructurasproductos;
  */
 public class PilaProductos extends base.Pila {
     private Producto cima;
+    
+    @Override
+    public Producto getCima(){
+        return cima;
+    }
 }

@@ -74,54 +74,52 @@ public class Producto extends base.Nodo {
         return stockCritico;
     }
 
-    public void setCodigo(String codigo) {
+    public boolean setCodigo(String codigo) {
         this.codigo = codigo;
+        return true;
     }
 
-    public void setNombre(String nombre) {
+    public boolean setNombre(String nombre) {
         this.nombre = nombre;
+        return true;
     }
 
-    public void setSiguiente(Producto siguiente) {
-        super.setSiguiente(siguiente); //To change body of generated methods, choose Tools | Templates.
+    public boolean setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+        return true;
+    }
+    
+    public boolean setSiguiente(Producto siguiente) {
+        super.setSiguiente(siguiente);
+        return true;
     }
 
+    public boolean setCantidad(int cantidad) {
+        if (cantidad > 0) {
+            this.cantidad = cantidad;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean setPrecio(int precio) {
+        if (precio > 0 & precio < 20000) {
+            this.precio = precio;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean setStockCritico(int stockCritico) {
+        if (stockCritico > 0 && stockCritico < this.cantidad) {
+            this.stockCritico = stockCritico;
+            return true;
+        }
+        return false;
+    }    
+    
     @Override
     public Producto getSiguiente() {
         return this.siguiente;
     }
-
-    public void setCantidad(int cantidad) throws Exception {
-        if (cantidad <= 0) {
-            throw new Exception("Debe existir stock.");
-        }
-        else {
-            this.cantidad = cantidad;
-        }
-    }
-
-    public void setPrecio(int precio) throws Exception {
-        if (precio > 20000) {
-            throw new Exception("El precio de todo producto no debe superar los $20000.");
-        }
-        else if (precio <= 0) {
-            throw new Exception("El precio de este producto no puede ser $0.");
-        }
-        else {
-            this.precio = precio;
-        }
-    }
-
-    public void setStockCritico(int stockCritico) throws Exception {
-        if (stockCritico <= 0) {
-            throw new Exception("El stock critico tiene que ser mayor a 0.");
-        }
-        else if (stockCritico >= this.cantidad) {
-            throw new Exception("El stock critico no debe superar el stock actual.");
-        }
-        else {
-            this.stockCritico = stockCritico;
-        }
-    }    
-    
 }

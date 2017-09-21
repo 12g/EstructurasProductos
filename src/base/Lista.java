@@ -13,21 +13,25 @@ public class Lista {
     private Nodo base;
     protected int cantidad;
 
+    public Nodo getBase() {
+        return base;
+    }
+
     public Lista() {
         this.base = null;
         this.cantidad = 0;
     }
     
     public void agregar(Nodo nuevo) {
-        if (base == null) {
+        if (getBase() == null) {
             this.base = nuevo;
         }
         else {
             if (cantidad == 1) {
-                base.setSiguiente(nuevo);
+                getBase().setSiguiente(nuevo);
             }
             else {
-                Nodo puntero = base;
+                Nodo puntero = getBase();
                 while (puntero.getSiguiente() != null){
                     puntero = puntero.getSiguiente();
                 };
@@ -38,8 +42,8 @@ public class Lista {
     }
     
     public void mostrar(){
-        if (base != null) {
-            Nodo puntero = base;
+        if (getBase() != null) {
+            Nodo puntero = getBase();
             do {
                 System.out.println( puntero.toString() );
                 puntero = puntero.getSiguiente();

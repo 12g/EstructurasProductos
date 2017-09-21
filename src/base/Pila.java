@@ -37,4 +37,8 @@ public class Pila {
             System.out.println("La pila no posee elementos!");
         }
     }
+    
+    public Nodo getCima(){
+        return cima;
+    }
 }

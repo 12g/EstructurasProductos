@@ -5,6 +5,8 @@
  */
 package estructurasproductos;
 
+import base.Nodo;
+
 /**
  *
  * @author blamadrid
@@ -12,7 +14,7 @@ package estructurasproductos;
 public class ListaProductos extends base.Lista {
     private Producto base;
 
-    public void agregar(Producto nuevo) throws Exception {
+    public boolean agregar(Producto nuevo) {
         if (this.base == null) {
             this.base = nuevo;
         }
@@ -21,12 +23,13 @@ public class ListaProductos extends base.Lista {
             Producto ultimo = verificarCodigo(codigoNuevo);
             if (ultimo != null) { //el codigo no existe
                 ultimo.setSiguiente(nuevo);
-                ++cantidad;
             }
             else {
-                throw new Exception("El codigo ya existe en la lista!");
+                return false;
             }
         }
+        ++cantidad;
+        return true;
     }
     
     public Producto verificarCodigo(String codigo){
@@ -48,6 +51,11 @@ public class ListaProductos extends base.Lista {
         else { //si no existe, simplemente devolvemos el ultimo producto-nodo de la lista
             return puntero;
         }
+    }
+
+    @Override
+    public Producto getBase() {
+        return base;
     }
     
     
