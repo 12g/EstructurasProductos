@@ -69,7 +69,7 @@ public class Main {
                     eliminarProducto();
                     break;
                 case 6:
-                    //mostrar pila
+                    mostrarPila();
                     break;
                 case 7:
                     break;
@@ -228,6 +228,10 @@ public class Main {
     }
 
     private static void eliminarProducto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private static void mostrarPila() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
