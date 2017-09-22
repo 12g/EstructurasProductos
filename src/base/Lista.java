@@ -42,7 +42,10 @@ public class Lista {
     }
     
     public void mostrar(){
-        if (getBase() != null) {
+        if (getBase() == null) {
+            System.out.println("La lista actual no posee elementos.");
+        }
+        else {
             Nodo puntero = getBase();
             do {
                 System.out.println( puntero.toString() );

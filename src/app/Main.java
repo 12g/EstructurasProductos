@@ -94,6 +94,12 @@ public class Main {
         System.out.println("7. Salir");
     }
 
+    /**
+     * Una rutina-formulario, en la que al usuario se le solicitan todos los
+     * datos necesarios para crear un nuevo producto. Todos deben ser ingresados
+     * correctamente antes de poder proceder o salir de esta rutina.
+     * @return Un objeto Producto resultante.
+     */
     private static Producto crearProducto() {
         String codigo = "", nombre = "", descripcion = "";
         int cantidad = 0, precio = 0, stockCritico = 0;
@@ -101,48 +107,53 @@ public class Main {
         System.out.println("A continuación se le solicitarán los datos del producto...");
 
         do {
-            System.out.print("Código de producto: ");
+            System.out.print("Código: ");
             codigo = inputScanner.nextLine();
         } while (codigo.isEmpty());
 
         do {
-            System.out.print("Nombre de producto: ");
+            System.out.print("Nombre: ");
             nombre = inputScanner.nextLine();
         } while (nombre.isEmpty());
 
         do {
-            System.out.print("Descripción del producto: ");
+            System.out.print("Descripción: ");
             descripcion = inputScanner.nextLine();
         } while (descripcion.isEmpty());
 
         do {
-            System.out.print("Precio del producto: $");
+            System.out.print("Precio: $");
             precio = inputScanner.nextInt();
             inputScanner.nextLine();
         } while (precio <= 0);
 
         do {
-            System.out.print("Cantidad del producto: ");
+            System.out.print("Stock actual: ");
             cantidad = inputScanner.nextInt();
             inputScanner.nextLine();
-        } while (cantidad <= 2);
+        } while (cantidad <= 0);
 
         do {
-            System.out.print("Stock crítico del producto: ");
+            System.out.print("Stock crítico: ");
             stockCritico = inputScanner.nextInt();
             inputScanner.nextLine();
-        } while (stockCritico <= 0 && stockCritico < cantidad);
-
+            if (stockCritico >= cantidad) {
+                System.out.print("\nDebe ser menor que el stock actual.\n");
+            }
+        } while (stockCritico <= 0 || stockCritico >= cantidad);
+        
+        System.out.println("");
+        
         return new Producto(codigo, nombre, descripcion, cantidad, precio, stockCritico);
     }
 
     /**
-     * Una rutina de mitad-interacción usuario y mitad-proceso que solicita un 
-     * código, busca un producto con ese código, y si el usuario confirma su
-     * selección, lo devuelve o repite todo el proceso solicitando nuevo código.
-     * @param buscarAnterior true si se quiere buscar el nodo que haga 
-     * referencia al que buscamos (útil si queremos eliminarlo).
-     * @return El Producto buscado.
+     * Una rutina-formulario, que solicita al usuario un código, con el que 
+     * busca un producto. Se pide confirmación si el producto es encontrado.
+     * @param buscarAnterior true si se quiere el nodo que referencia a aquél 
+     * buscado con el código solicitado. Útil si queremos eliminarlo.
+     * @return El objeto Producto encontrado, o null si no se pudo encontrar o 
+     * no se confirmó.
      */
     private static Producto encontrarProducto(boolean buscarAnterior) {
         
@@ -162,7 +173,7 @@ public class Main {
             Producto referencial = null;
 
             do {
-                System.out.println("Ingrese el código del producto deseado: ");
+                System.out.print("Ingrese el código del producto deseado: ");
                 codigo = inputScanner.nextLine();
                 System.out.println("\n");
             } while (codigo.isEmpty());
@@ -186,69 +197,79 @@ public class Main {
             if (referencial != null) {
                 System.out.println("PRODUCTO '" + codigo + "' ENCONTRADO\n"
                         + "Nombre: " + referencial.getNombre() + "\n"
-                        + "Precio: " + referencial.getPrecio() + "\n"
-                        + "Stock: " + referencial.getCantidad() + "\n"
-                        + "Stock critico: " + referencial.getStockCritico() + "\n"
+                        + "Precio: $" + referencial.getPrecio() + "\n"
+                        + "Stock actual: " + referencial.getCantidad() + "\n"
+                        + "Stock crítico: " + referencial.getStockCritico() + "\n"
                         + "Es éste el producto que busca? [S/n] "
                 );
             } else {
-                System.out.println("No se encontró un producto identificado por el código que ingresó.\n"
+                System.out.print("No se encontró un producto identificado por el código que ingresó.\n"
                         + "Quiere volver a intentarlo? [S/n] ");
             }
-            if (inputScanner.nextLine().equals("n")) {
+            boolean dijoNo = inputScanner.nextLine().equals("n");
+            System.out.println("\n");
+            if (dijoNo) {
                 return null;
             }
-            System.out.println("\n");
         } while (objetivo == null);
 
         return objetivo;
     }
 
+    /**
+     * Una rutina-formulario, solicitando al usuario todos los datos para 
+     * modificar un producto específico.
+     * @param objetivo El objeto Producto a modificar.
+     */
     private static void editarProducto(Producto objetivo) {
         boolean todoOK;
-
-        do {
-            System.out.print("Código: ");
-            todoOK = objetivo.setCodigo(inputScanner.nextLine());
-            System.out.println("\n");
-        } while (todoOK);
 
         do {
             System.out.print("Nombre: ");
             todoOK = objetivo.setNombre(inputScanner.nextLine());
             System.out.println("\n");
-        } while (todoOK);
+        } while (!todoOK);
 
         do {
             System.out.print("Descripción: ");
             todoOK = objetivo.setDescripcion(inputScanner.nextLine());
             System.out.println("\n");
-        } while (todoOK);
+        } while (!todoOK);
 
         do {
-            System.out.print("Precio: ");
+            System.out.print("Precio: $");
             todoOK = objetivo.setPrecio(inputScanner.nextInt());
             inputScanner.nextLine();
             System.out.println("\n");
-        } while (todoOK);
+        } while (!todoOK);
 
         do {
-            System.out.print("Cantidad: ");
+            System.out.print("Stock actual: ");
             todoOK = objetivo.setCantidad(inputScanner.nextInt());
             inputScanner.nextLine();
             System.out.println("\n");
-        } while (todoOK);
+        } while (!todoOK);
 
         do {
-            System.out.print("Stock Crítico: ");
+            System.out.print("Stock crítico: ");
             todoOK = objetivo.setStockCritico(inputScanner.nextInt());
             inputScanner.nextLine();
             System.out.println("\n");
-        } while (todoOK);
+        } while (!todoOK);
     }
 
+    /**
+     * Rompe cualquier enlace, dentro de la lista, a un Producto específico.
+     * @param prod El Producto a desenlazar de la lista.
+     */
     private static void eliminarProducto(Producto prod) {
-        prod.setSiguiente(prod.getSiguiente().getSiguiente());
+        Producto siguienteProducto = prod.getSiguiente();
+        if (siguienteProducto != null && siguienteProducto.getSiguiente() != null) {
+            prod.setSiguiente(siguienteProducto.getSiguiente());
+        }
+        else {
+            prod.setSiguiente(null);
+        }
         listaMain.setCantidad( listaMain.getCantidad() - 1 );
     }
 

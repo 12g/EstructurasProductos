@@ -89,12 +89,16 @@ public final class Producto extends base.Nodo {
     }
     
     public boolean setSiguiente(Producto siguiente) {
-        super.setSiguiente(siguiente);
+        this.siguiente = siguiente;
         return true;
     }
 
     public boolean setCantidad(int cantidad) {
-        if (cantidad > 0) {
+        if (cantidad < 2) {
+            System.out.println("Deben haber al menos 2 unidades de cualquier producto; se ha establecido en 2. ");
+            this.cantidad = 2;
+        }
+        else {
             this.cantidad = cantidad;
             return true;
         }
@@ -102,7 +106,15 @@ public final class Producto extends base.Nodo {
     }
 
     public boolean setPrecio(int precio) {
-        if (precio > 0 & precio < 20000) {
+        if (precio < 1) {
+            System.out.print("El precio no puede ser $0 o menos; se ha establecido en $1. ");
+            this.precio = 1;
+        }
+        else if (precio > 20000) {
+            System.out.print("El precio del producto no debe superar el límite de $20000; su valor se ha cambiado por éste. ");
+            this.precio = 20000;
+        }
+        else {
             this.precio = precio;
             return true;
         }
@@ -110,7 +122,16 @@ public final class Producto extends base.Nodo {
     }
 
     public boolean setStockCritico(int stockCritico) {
-        if (stockCritico > 0 && stockCritico < this.cantidad) {
+        if (stockCritico < 1) {
+            System.out.print("El stock crítico no puede 0 o menos; se ha establecido en 1. ");
+            this.stockCritico = 1;
+        }
+        else if (stockCritico >= this.cantidad) {
+            int nuevoStockCritico = this.cantidad - 1;
+            System.out.print("El stock crítico no puede ser igual o mayor a la cantidad. Se ha dejado en "+nuevoStockCritico+". ");
+            this.stockCritico = nuevoStockCritico;
+        }
+        else {
             this.stockCritico = stockCritico;
             return true;
         }
@@ -121,4 +142,18 @@ public final class Producto extends base.Nodo {
     public Producto getSiguiente() {
         return this.siguiente;
     }
+
+    @Override
+    public String toString() {
+        String cantSustantivo = "unidad" + ((cantidad==1)?"":"es");
+        return "-------------------\n"
+                + "Código: "+codigo+"\n"
+                + "Nombre: "+nombre+"\n"
+                + "Descripción: "+descripcion+"\n"
+                + "Precio: $"+precio+"\n"
+                + "Stock actual: "+cantidad+" "+cantSustantivo+"\n"
+                + "Stock crítico: "+stockCritico+" "+cantSustantivo;
+    }
+    
+    
 }

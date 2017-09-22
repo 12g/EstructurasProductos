@@ -31,7 +31,7 @@ public final class ListaProductos extends base.Lista {
             String codigoNuevo = nuevo.getCodigo();
             Producto ultimo = verificarCodigo(codigoNuevo);
             if (ultimo != null) { //el codigo no existe
-                ultimo.setSiguiente(nuevo);
+                return ultimo.setSiguiente(nuevo);
             }
             else {
                 return false;
@@ -42,19 +42,19 @@ public final class ListaProductos extends base.Lista {
     }
     
     public Producto verificarCodigo(String codigo){
-        boolean positivo = false;
+        boolean existe = false;
         Producto puntero = base;
-        while (puntero.getSiguiente() != null) {
-            positivo = (puntero.getCodigo().equals(codigo));
-            if (positivo) {
-                break;
-            }
-            else {
+        do {
+            existe = (codigo.equals(puntero.getCodigo()));
+            if (!existe && puntero.getSiguiente() != null) {
                 puntero = puntero.getSiguiente();
             }
-        }
+            else {
+                break;
+            }
+        } while (true);
         
-        if (positivo) { //si existe, impedimos obtener un producto-nodo y devolvemos null
+        if (existe) { //si existe devolvemos null
             return null;
         }
         else { //si no existe, simplemente devolvemos el ultimo producto-nodo de la lista
@@ -65,6 +65,22 @@ public final class ListaProductos extends base.Lista {
     @Override
     public Producto getBase() {
         return base;
+    }
+
+    @Override
+    public void mostrar() {
+        if (getBase() == null) {
+            System.out.println("La lista actual no posee elementos.");
+        }
+        else {
+            Producto puntero = getBase();
+            do {
+                System.out.println( puntero.toString() );
+                puntero = puntero.getSiguiente();
+            }
+            while (puntero != null);
+            System.out.println("");
+        }
     }
     
     
