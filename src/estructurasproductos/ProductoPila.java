@@ -24,7 +24,7 @@ public final class ProductoPila extends base.Nodo {
     private String codigo;
     private String nombre;
     private int precio;
-    private Producto siguiente;
+    private ProductoPila siguiente;
 
     public ProductoPila(String codigo, String nombre, String descripcion, int cantidad, int precio, int stockCritico)  {
         super();
@@ -76,7 +76,7 @@ public final class ProductoPila extends base.Nodo {
     }
     
     @Override
-    public Producto getSiguiente() {
+    public ProductoPila getSiguiente() {
         return this.siguiente;
     }
 }

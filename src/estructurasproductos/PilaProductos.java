@@ -21,10 +21,10 @@ package estructurasproductos;
  * @author blamadrid
  */
 public final class PilaProductos extends base.Pila {
-    private Producto cima;
+    private ProductoPila cima;
     
     @Override
-    public Producto getCima(){
+    public ProductoPila getCima(){
         return cima;
     }
     
@@ -34,7 +34,7 @@ public final class PilaProductos extends base.Pila {
      * @return true si el código es encontrado en otro Producto, false si no es así.
      */
     public boolean existeCodigo(String codigo){
-        Producto puntero = cima;
+        ProductoPila puntero = cima;
         do {
             if (puntero.getCodigo().equals(codigo)) {
                 return true;
