@@ -63,7 +63,7 @@ public class Main {
                     listaMain.mostrar();
                     break;
                 case 4:
-                    
+                    pilaMain.llenar(listaMain);
                     break;
                 case 5:
                     //eliminar elemento

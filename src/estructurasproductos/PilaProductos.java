@@ -47,9 +47,9 @@ public class PilaProductos extends base.Pila {
         do {
             int precio = puntero.getPrecio();
             if ( precio > 5000 && precio < 7000 ) {
-                
+                agregar(puntero);
             }
             puntero = puntero.getSiguiente();
-        } while( puntero != null );
+        } while (puntero != null);
     }
 }
