@@ -30,8 +30,7 @@ public class Pila {
     public void agregar(Nodo nuevo){
         if (cima == null) {
             cima = nuevo;
-        }
-        else {
+        } else {
             nuevo.setSiguiente(cima);
             this.cima = nuevo;
         }

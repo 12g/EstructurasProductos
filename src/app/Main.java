@@ -98,6 +98,7 @@ public class Main {
      * Una rutina-formulario, en la que al usuario se le solicitan todos los
      * datos necesarios para crear un nuevo producto. Todos deben ser ingresados
      * correctamente antes de poder proceder o salir de esta rutina.
+     *
      * @return Un objeto Producto resultante.
      */
     private static Producto crearProducto() {
@@ -141,22 +142,23 @@ public class Main {
                 System.out.print("\nDebe ser menor que el stock actual.\n");
             }
         } while (stockCritico <= 0 || stockCritico >= cantidad);
-        
+
         System.out.println("");
-        
+
         return new Producto(codigo, nombre, descripcion, cantidad, precio, stockCritico);
     }
 
     /**
-     * Una rutina-formulario, que solicita al usuario un código, con el que 
+     * Una rutina-formulario, que solicita al usuario un código, con el que
      * busca un producto. Se pide confirmación si el producto es encontrado.
-     * @param buscarAnterior true si se quiere el nodo que referencia a aquél 
+     *
+     * @param buscarAnterior true si se quiere el nodo que referencia a aquél
      * buscado con el código solicitado. Útil si queremos eliminarlo.
-     * @return El objeto Producto encontrado, o null si no se pudo encontrar o 
+     * @return El objeto Producto encontrado, o null si no se pudo encontrar o
      * no se confirmó.
      */
     private static Producto encontrarProducto(boolean buscarAnterior) {
-        
+
         if (listaMain.getCantidad() == 0) {
             System.out.println("La lista actual no posee elementos.\n");
             return null;
@@ -182,8 +184,7 @@ public class Main {
                 if (punteroActual.getCodigo().equals(codigo)) {
                     if (buscarAnterior && punteroAnterior != null) {
                         objetivo = punteroAnterior;
-                    }
-                    else {
+                    } else {
                         objetivo = punteroActual;
                     }
                     referencial = punteroActual;
@@ -217,8 +218,9 @@ public class Main {
     }
 
     /**
-     * Una rutina-formulario, solicitando al usuario todos los datos para 
+     * Una rutina-formulario, solicitando al usuario todos los datos para
      * modificar un producto específico.
+     *
      * @param objetivo El objeto Producto a modificar.
      */
     private static void editarProducto(Producto objetivo) {
@@ -260,21 +262,21 @@ public class Main {
 
     /**
      * Rompe cualquier enlace, dentro de la lista, a un Producto específico.
+     *
      * @param prod El Producto a desenlazar de la lista.
      */
     private static void eliminarProducto(Producto prod) {
         Producto siguienteProducto = prod.getSiguiente();
         if (siguienteProducto != null && siguienteProducto.getSiguiente() != null) {
             prod.setSiguiente(siguienteProducto.getSiguiente());
-        }
-        else {
+        } else {
             prod.setSiguiente(null);
         }
-        listaMain.setCantidad( listaMain.getCantidad() - 1 );
+        listaMain.setCantidad(listaMain.getCantidad() - 1);
     }
 
     private static void mostrarPila() {
-        
+
     }
 
 }

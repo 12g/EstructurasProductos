@@ -41,17 +41,15 @@ public class Lista {
         ++cantidad;
     }
     
-    public void mostrar(){
+    public void mostrar() {
         if (getBase() == null) {
             System.out.println("La lista actual no posee elementos.");
-        }
-        else {
+        } else {
             Nodo puntero = getBase();
             do {
-                System.out.println( puntero.toString() );
+                System.out.println(puntero.toString());
                 puntero = puntero.getSiguiente();
-            }
-            while (puntero != null);
+            } while (puntero != null);
             System.out.println("");
         }
     }

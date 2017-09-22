@@ -21,20 +21,14 @@ package estructurasproductos;
  * @author blamadrid
  */
 public final class ProductoPila extends base.Nodo {
+
     private String codigo;
     private String nombre;
     private int precio;
     private ProductoPila siguiente;
 
-    public ProductoPila(String codigo, String nombre, String descripcion, int cantidad, int precio, int stockCritico)  {
+    public ProductoPila(String codigo, String nombre, int precio) {
         super();
-        setCodigo(codigo);
-        setNombre(nombre);
-        setPrecio(precio);
-    }
-    
-    public ProductoPila(String codigo, String nombre, String descripcion, int cantidad, int precio, int stockCritico, Producto siguiente)  {
-        super(siguiente);
         setCodigo(codigo);
         setNombre(nombre);
         setPrecio(precio);
@@ -61,7 +55,7 @@ public final class ProductoPila extends base.Nodo {
         this.nombre = nombre;
         return true;
     }
-    
+
     public boolean setSiguiente(Producto siguiente) {
         super.setSiguiente(siguiente);
         return true;
@@ -74,7 +68,7 @@ public final class ProductoPila extends base.Nodo {
         }
         return false;
     }
-    
+
     @Override
     public ProductoPila getSiguiente() {
         return this.siguiente;
