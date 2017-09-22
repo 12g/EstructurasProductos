@@ -54,7 +54,7 @@ public class Main {
                     }
                     break;
                 case 2:
-                    prod = encontrarProducto();
+                    prod = encontrarProducto(false);
                     if (prod != null) {
                         editarProducto(prod);
                     }
@@ -66,7 +66,7 @@ public class Main {
                     pilaMain.llenar(listaMain);
                     break;
                 case 5:
-                    prod = encontrarProducto();
+                    prod = encontrarProducto(true); //el true nos permite obtener el producto que referencia a aquel que realmente buscamos
                     if (prod != null) {
                         eliminarProducto(prod);
                     }
@@ -136,7 +136,16 @@ public class Main {
         return new Producto(codigo, nombre, descripcion, cantidad, precio, stockCritico);
     }
 
-    private static Producto encontrarProducto() {
+    /**
+     * Una rutina de mitad-interacción usuario y mitad-proceso que solicita un 
+     * código, busca un producto con ese código, y si el usuario confirma su
+     * selección, lo devuelve o repite todo el proceso solicitando nuevo código.
+     * @param buscarAnterior true si se quiere buscar el nodo que haga 
+     * referencia al que buscamos (útil si queremos eliminarlo).
+     * @return El Producto buscado.
+     */
+    private static Producto encontrarProducto(boolean buscarAnterior) {
+        
         if (listaMain.getCantidad() == 0) {
             System.out.println("La lista actual no posee elementos.\n");
             return null;
@@ -148,33 +157,42 @@ public class Main {
         do {
             codigo = "";
             objetivo = null;
-            Producto puntero = listaMain.getBase();
+            Producto punteroActual = listaMain.getBase();
+            Producto punteroAnterior = null;
+            Producto referencial = null;
 
             do {
-                System.out.println("Ingrese el código del producto a editar: ");
+                System.out.println("Ingrese el código del producto deseado: ");
                 codigo = inputScanner.nextLine();
                 System.out.println("\n");
             } while (codigo.isEmpty());
 
             do {
-                if (puntero.getCodigo().equals(codigo)) {
-                    objetivo = puntero;
+                if (punteroActual.getCodigo().equals(codigo)) {
+                    if (buscarAnterior && punteroAnterior != null) {
+                        objetivo = punteroAnterior;
+                    }
+                    else {
+                        objetivo = punteroActual;
+                    }
+                    referencial = punteroActual;
                     break;
                 } else {
-                    puntero = puntero.getSiguiente();
+                    punteroAnterior = punteroActual;
+                    punteroActual = punteroActual.getSiguiente();
                 }
-            } while (puntero != null);
+            } while (punteroActual != null);
 
-            if (objetivo != null) {
+            if (referencial != null) {
                 System.out.println("PRODUCTO '" + codigo + "' ENCONTRADO\n"
-                        + "Nombre: " + objetivo.getNombre() + "\n"
-                        + "Precio: " + objetivo.getPrecio() + "\n"
-                        + "Stock: " + objetivo.getCantidad() + "\n"
-                        + "Stock critico: " + objetivo.getStockCritico() + "\n"
-                        + "Está seguro de editarlo? [S/n] "
+                        + "Nombre: " + referencial.getNombre() + "\n"
+                        + "Precio: " + referencial.getPrecio() + "\n"
+                        + "Stock: " + referencial.getCantidad() + "\n"
+                        + "Stock critico: " + referencial.getStockCritico() + "\n"
+                        + "Es éste el producto que busca? [S/n] "
                 );
             } else {
-                System.out.println("El producto especificado no existe.\n"
+                System.out.println("No se encontró un producto identificado por el código que ingresó.\n"
                         + "Quiere volver a intentarlo? [S/n] ");
             }
             if (inputScanner.nextLine().equals("n")) {
@@ -230,7 +248,8 @@ public class Main {
     }
 
     private static void eliminarProducto(Producto prod) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        prod.setSiguiente(prod.getSiguiente().getSiguiente());
+        listaMain.setCantidad( listaMain.getCantidad() - 1 );
     }
 
     private static void mostrarPila() {
