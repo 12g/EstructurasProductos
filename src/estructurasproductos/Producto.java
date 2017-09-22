@@ -16,13 +16,11 @@
  */
 package estructurasproductos;
 
-import base.Nodo;
-
 /**
  *
  * @author blamadrid
  */
-public class Producto extends base.Nodo {
+public final class Producto extends base.Nodo {
     private String codigo;
     private String nombre;
     private String descripcion;

@@ -20,7 +20,7 @@ package estructurasproductos;
  *
  * @author blamadrid
  */
-public class PilaProductos extends base.Pila {
+public final class PilaProductos extends base.Pila {
     private Producto cima;
     
     @Override
@@ -28,6 +28,11 @@ public class PilaProductos extends base.Pila {
         return cima;
     }
     
+    /**
+     * Busca entre todos los Productos de la Pila, alguno cuyo código sea idéntico al ingresado.
+     * @param codigo El código a comparar.
+     * @return true si el código es encontrado en otro Producto, false si no es así.
+     */
     public boolean existeCodigo(String codigo){
         Producto puntero = cima;
         do {
@@ -41,12 +46,16 @@ public class PilaProductos extends base.Pila {
         return false;
     }
     
+    /**
+     * Busca todos los Productos ingresados en la Lista, cuyos precios sean mayores a 5000 y menores a 7000, y evitando duplicados por código, los agrega a la Pila.
+     * @param lista La Lista desde donde se buscarán esos Productos.
+     */
     public void llenar(ListaProductos lista){
         Producto base = lista.getBase();
         Producto puntero = base;
         do {
             int precio = puntero.getPrecio();
-            if ( precio > 5000 && precio < 7000 ) {
+            if ( precio > 5000 && precio < 7000 && !existeCodigo(puntero.getCodigo()) ) {
                 agregar(puntero);
             }
             puntero = puntero.getSiguiente();

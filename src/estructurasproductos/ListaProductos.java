@@ -16,13 +16,11 @@
  */
 package estructurasproductos;
 
-import base.Nodo;
-
 /**
  *
  * @author blamadrid
  */
-public class ListaProductos extends base.Lista {
+public final class ListaProductos extends base.Lista {
     private Producto base;
 
     public boolean agregar(Producto nuevo) {
