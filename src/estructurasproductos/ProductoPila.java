@@ -22,33 +22,24 @@ import base.Nodo;
  *
  * @author blamadrid
  */
-public class Producto extends base.Nodo {
+public class ProductoPila extends Nodo {
     private String codigo;
     private String nombre;
-    private String descripcion;
-    private int cantidad;
     private int precio;
-    private int stockCritico;
     private Producto siguiente;
 
-    public Producto(String codigo, String nombre, String descripcion, int cantidad, int precio, int stockCritico)  {
+    public ProductoPila(String codigo, String nombre, String descripcion, int cantidad, int precio, int stockCritico)  {
         super();
         setCodigo(codigo);
         setNombre(nombre);
-        this.descripcion = descripcion;
-        setCantidad(cantidad);
         setPrecio(precio);
-        setStockCritico(stockCritico);
     }
     
-    public Producto(String codigo, String nombre, String descripcion, int cantidad, int precio, int stockCritico, Producto siguiente)  {
+    public ProductoPila(String codigo, String nombre, String descripcion, int cantidad, int precio, int stockCritico, Producto siguiente)  {
         super(siguiente);
         setCodigo(codigo);
         setNombre(nombre);
-        this.descripcion = descripcion;
-        setCantidad(cantidad);
         setPrecio(precio);
-        setStockCritico(stockCritico);
     }
 
     public String getCodigo() {
@@ -59,20 +50,8 @@ public class Producto extends base.Nodo {
         return nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
     public int getPrecio() {
         return precio;
-    }
-
-    public int getStockCritico() {
-        return stockCritico;
     }
 
     public boolean setCodigo(String codigo) {
@@ -84,23 +63,10 @@ public class Producto extends base.Nodo {
         this.nombre = nombre;
         return true;
     }
-
-    public boolean setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-        return true;
-    }
     
     public boolean setSiguiente(Producto siguiente) {
         super.setSiguiente(siguiente);
         return true;
-    }
-
-    public boolean setCantidad(int cantidad) {
-        if (cantidad > 0) {
-            this.cantidad = cantidad;
-            return true;
-        }
-        return false;
     }
 
     public boolean setPrecio(int precio) {
@@ -110,14 +76,6 @@ public class Producto extends base.Nodo {
         }
         return false;
     }
-
-    public boolean setStockCritico(int stockCritico) {
-        if (stockCritico > 0 && stockCritico < this.cantidad) {
-            this.stockCritico = stockCritico;
-            return true;
-        }
-        return false;
-    }    
     
     @Override
     public Producto getSiguiente() {

@@ -1,7 +1,18 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2017 blamadrid
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package estructurasproductos;
 
@@ -15,5 +26,30 @@ public class PilaProductos extends base.Pila {
     @Override
     public Producto getCima(){
         return cima;
+    }
+    
+    public boolean existeCodigo(String codigo){
+        Producto puntero = cima;
+        do {
+            if (puntero.getCodigo().equals(codigo)) {
+                return true;
+            }
+            else {
+                puntero = puntero.getSiguiente();
+            }
+        } while (puntero != null);
+        return false;
+    }
+    
+    public void llenar(ListaProductos lista){
+        Producto base = lista.getBase();
+        Producto puntero = base;
+        do {
+            puntero = puntero.getSiguiente();
+            int precio = puntero.getPrecio();
+            if ( precio > 5000 && precio < 7000 ) {
+                
+            }
+        } while( puntero != null );
     }
 }
