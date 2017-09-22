@@ -45,11 +45,11 @@ public class PilaProductos extends base.Pila {
         Producto base = lista.getBase();
         Producto puntero = base;
         do {
-            puntero = puntero.getSiguiente();
             int precio = puntero.getPrecio();
             if ( precio > 5000 && precio < 7000 ) {
                 
             }
+            puntero = puntero.getSiguiente();
         } while( puntero != null );
     }
 }
