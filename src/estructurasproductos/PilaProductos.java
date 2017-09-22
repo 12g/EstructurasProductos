@@ -47,7 +47,7 @@ public final class PilaProductos extends base.Pila {
     }
     
     /**
-     * Busca todos los Productos ingresados en la Lista, cuyos precios sean mayores a 5000 y menores a 7000, y evitando duplicados por código, los agrega a la Pila.
+     * Busca todos los Productos de la Lista ingresada, cuyos precios sean mayores a 5000 y menores a 7000, y evitando duplicados por código, los agrega a la Pila.
      * @param lista La Lista desde donde se buscarán esos Productos.
      */
     public void llenar(ListaProductos lista){

@@ -66,7 +66,7 @@ public class Main {
                     pilaMain.llenar(listaMain);
                     break;
                 case 5:
-                    //eliminar elemento
+                    eliminarProducto();
                     break;
                 case 6:
                     //mostrar pila
@@ -225,6 +225,10 @@ public class Main {
             inputScanner.nextLine();
             System.out.println("\n");
         } while (todoOK);
+    }
+
+    private static void eliminarProducto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
