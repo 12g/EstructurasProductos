@@ -66,7 +66,7 @@ public class Main {
                     pilaMain.llenar(listaMain);
                     break;
                 case 5:
-                    prod = encontrarProducto(true); //el true nos permite obtener el producto que referencia a aquel que realmente buscamos
+                    prod = encontrarProducto(true); //este "true" permite obtener el producto que referencia a aquel que realmente se busca
                     if (prod != null) {
                         eliminarProducto(prod);
                     }
@@ -83,6 +83,9 @@ public class Main {
         } while (option != 7);
     }
 
+    /**
+     * Dibuja el menú principal
+     */
     private static void printMenu() {
         System.out.println("Menú principal");
         System.out.println("1. Ingresar producto");
@@ -153,7 +156,7 @@ public class Main {
      * busca un producto. Se pide confirmación si el producto es encontrado.
      *
      * @param buscarAnterior true si se quiere el nodo que referencia a aquél
-     * buscado con el código solicitado. Útil si queremos eliminarlo.
+     * buscado con el código solicitado. Útil si queremos eliminar este último.
      * @return El objeto Producto encontrado, o null si no se pudo encontrar o
      * no se confirmó.
      */
@@ -168,7 +171,6 @@ public class Main {
         Producto objetivo;
 
         do {
-            codigo = "";
             objetivo = null;
             Producto punteroActual = listaMain.getBase();
             Producto punteroAnterior = null;
