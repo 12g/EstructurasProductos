@@ -41,22 +41,22 @@ public class Main {
         do {
             printMenu();
 
+            Producto prod;
             option = inputScanner.nextInt();
             inputScanner.nextLine();
             switch (option) {
                 case 1:
-                    Producto nuevo = crearProducto();
-                    if (listaMain.agregar(nuevo)) {
+                    prod = crearProducto();
+                    if (listaMain.agregar(prod)) {
                         System.out.println("\nProducto agregado con éxito.\n\n");
-                    }
-                    else {
+                    } else {
                         System.out.println("Este código ya existe.");
                     }
                     break;
                 case 2:
-                    Producto objetivo = encontrarProducto();
-                    if (objetivo != null) {
-                        editarProducto(objetivo);
+                    prod = encontrarProducto();
+                    if (prod != null) {
+                        editarProducto(prod);
                     }
                     break;
                 case 3:
@@ -66,7 +66,10 @@ public class Main {
                     pilaMain.llenar(listaMain);
                     break;
                 case 5:
-                    eliminarProducto();
+                    prod = encontrarProducto();
+                    if (prod != null) {
+                        eliminarProducto(prod);
+                    }
                     break;
                 case 6:
                     mostrarPila();
@@ -138,7 +141,7 @@ public class Main {
             System.out.println("La lista actual no posee elementos.\n");
             return null;
         }
-        
+
         String codigo;
         Producto objetivo;
 
@@ -170,17 +173,16 @@ public class Main {
                         + "Stock critico: " + objetivo.getStockCritico() + "\n"
                         + "Está seguro de editarlo? [S/n] "
                 );
-            } 
-            else {
+            } else {
                 System.out.println("El producto especificado no existe.\n"
                         + "Quiere volver a intentarlo? [S/n] ");
-            } 
+            }
             if (inputScanner.nextLine().equals("n")) {
                 return null;
             }
             System.out.println("\n");
         } while (objetivo == null);
-        
+
         return objetivo;
     }
 
@@ -192,33 +194,33 @@ public class Main {
             todoOK = objetivo.setCodigo(inputScanner.nextLine());
             System.out.println("\n");
         } while (todoOK);
-        
+
         do {
             System.out.print("Nombre: ");
             todoOK = objetivo.setNombre(inputScanner.nextLine());
             System.out.println("\n");
         } while (todoOK);
-        
+
         do {
             System.out.print("Descripción: ");
             todoOK = objetivo.setDescripcion(inputScanner.nextLine());
             System.out.println("\n");
         } while (todoOK);
-        
+
         do {
             System.out.print("Precio: ");
             todoOK = objetivo.setPrecio(inputScanner.nextInt());
             inputScanner.nextLine();
             System.out.println("\n");
         } while (todoOK);
-        
+
         do {
             System.out.print("Cantidad: ");
             todoOK = objetivo.setCantidad(inputScanner.nextInt());
             inputScanner.nextLine();
             System.out.println("\n");
         } while (todoOK);
-        
+
         do {
             System.out.print("Stock Crítico: ");
             todoOK = objetivo.setStockCritico(inputScanner.nextInt());
@@ -227,7 +229,7 @@ public class Main {
         } while (todoOK);
     }
 
-    private static void eliminarProducto() {
+    private static void eliminarProducto(Producto prod) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
