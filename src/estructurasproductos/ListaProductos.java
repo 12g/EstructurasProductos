@@ -75,11 +75,12 @@ public final class ListaProductos extends base.Lista {
         else {
             Producto puntero = getBase();
             do {
-                System.out.println( puntero.toString() );
+                System.out.println("-------------------");
+                System.out.println(puntero.toString());
                 puntero = puntero.getSiguiente();
             }
             while (puntero != null);
-            System.out.println("");
+            System.out.println("-------------------\n");
         }
     }
     
