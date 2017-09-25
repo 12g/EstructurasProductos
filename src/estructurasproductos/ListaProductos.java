@@ -70,7 +70,7 @@ public final class ListaProductos extends base.Lista {
     @Override
     public void mostrar() {
         if (getBase() == null) {
-            System.out.println("La lista actual no posee elementos.");
+            System.out.println("La lista actual no posee elementos.\n\n");
         }
         else {
             Producto puntero = getBase();

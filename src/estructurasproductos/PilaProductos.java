@@ -40,14 +40,16 @@ public final class PilaProductos extends base.Pila {
      * así.
      */
     public boolean existeCodigo(String codigo) {
-        ProductoPila puntero = cima;
-        do {
-            if (codigo.equals(puntero.getCodigo())) {
-                return true;
-            } else {
-                puntero = puntero.getSiguiente();
-            }
-        } while (puntero != null);
+        if (cantidad > 0) {
+            ProductoPila puntero = cima;
+            do {
+                if (codigo.equals(puntero.getCodigo())) {
+                    return true;
+                } else {
+                    puntero = puntero.getSiguiente();
+                }
+            } while (puntero != null);
+        }
         return false;
     }
 
@@ -85,7 +87,7 @@ public final class PilaProductos extends base.Pila {
     
     public void mostrar(){
         if (cantidad == 0) {
-            System.out.println("Esta pila está vacía.");
+            System.out.println("Esta pila está vacía.\n\n");
         }
         else {
             ProductoPila puntero = cima;
