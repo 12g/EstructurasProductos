@@ -93,7 +93,7 @@ public final class PilaProductos extends base.Pila {
             ProductoPila puntero = cima;
             do {
                 System.out.println("-------------------\n");
-                puntero.toString();
+                System.out.println(puntero.toString());
                 puntero = puntero.getSiguiente();
             } while (puntero != null);
             System.out.println("-------------------\n");
