@@ -59,8 +59,7 @@ public final class PilaProductos extends base.Pila {
      * @param lista La Lista desde donde se buscarán esos Productos.
      */
     public void llenar(ListaProductos lista) {
-        Producto base = lista.getBase();
-        Producto puntero = base;
+        Producto puntero = lista.getBase();
         do {
             int precio = puntero.getPrecio();
             if (precio > 5000 && precio < 7000 && !existeCodigo(puntero.getCodigo())) {
@@ -83,5 +82,19 @@ public final class PilaProductos extends base.Pila {
         }
         ++cantidad;
     }
-
+    
+    public void mostrar(){
+        if (cantidad == 0) {
+            System.out.println("Esta pila está vacía.");
+        }
+        else {
+            ProductoPila puntero = cima;
+            do {
+                System.out.println("-------------------\n");
+                puntero.toString();
+                puntero = puntero.getSiguiente();
+            } while (puntero != null);
+            System.out.println("-------------------\n");
+        }
+    }
 }

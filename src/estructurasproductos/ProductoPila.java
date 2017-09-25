@@ -73,4 +73,13 @@ public final class ProductoPila extends base.Nodo {
     public ProductoPila getSiguiente() {
         return this.siguiente;
     }
+
+    @Override
+    public String toString() {
+        return "Código: " + codigo + "\n"
+                + "Nombre: " + nombre + "\n"
+                + "Precio: $" + precio + "\n";
+    }
+    
+    
 }

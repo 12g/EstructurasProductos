@@ -24,6 +24,7 @@ public class Pila {
     private Nodo cima;
     protected int cantidad;
 
+
     public Pila() {
     }
     
@@ -50,5 +51,9 @@ public class Pila {
     
     public Nodo getCima(){
         return cima;
+    }
+    
+    public int getCantidad() {
+        return cantidad;
     }
 }

@@ -47,9 +47,11 @@ public class Lista {
         } else {
             Nodo puntero = getBase();
             do {
+                System.out.println("-------------------");
                 System.out.println(puntero.toString());
                 puntero = puntero.getSiguiente();
             } while (puntero != null);
+            System.out.println("-------------------\n");
             System.out.println("");
         }
     }

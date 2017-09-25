@@ -38,6 +38,8 @@ public class Main {
         pilaMain = new PilaProductos();
         inputScanner = new Scanner(System.in);
 
+        /* PARTE VISIBLE DE LA APLICACIÓN */
+        
         do {
             printMenu();
 
@@ -72,19 +74,21 @@ public class Main {
                     }
                     break;
                 case 6:
-                    mostrarPila();
+                    pilaMain.mostrar();
                     break;
                 case 7:
-                    break;
+                    System.exit(0);
                 default:
                     option = 0;
                     break;
             }
-        } while (option != 7);
+        } while (true);
+        
+        /* PARTE VISIBLE DE LA APLICACIÓN */
     }
 
     /**
-     * Dibuja el menú principal
+     * Dibuja el menú principal.
      */
     private static void printMenu() {
         System.out.println("Menú principal");
@@ -158,7 +162,7 @@ public class Main {
      * @param buscarAnterior true si se quiere el nodo que referencia a aquél
      * buscado con el código solicitado. Útil si queremos eliminar este último.
      * @return El objeto Producto encontrado, o null si no se pudo encontrar o
-     * no se confirmó.
+     * no se confirmó.        
      */
     private static Producto encontrarProducto(boolean buscarAnterior) {
 
@@ -198,13 +202,10 @@ public class Main {
             } while (punteroActual != null);
 
             if (referencial != null) {
-                System.out.println("PRODUCTO '" + codigo + "' ENCONTRADO\n"
-                        + "Nombre: " + referencial.getNombre() + "\n"
-                        + "Precio: $" + referencial.getPrecio() + "\n"
-                        + "Stock actual: " + referencial.getCantidad() + "\n"
-                        + "Stock crítico: " + referencial.getStockCritico() + "\n"
-                        + "Es éste el producto que busca? [S/n] "
-                );
+                System.out.println("PRODUCTO '" + codigo + "' ENCONTRADO");
+                punteroActual.toString();
+                System.out.print("Es éste el producto que busca? [S/n] ");
+                System.out.println("");
             } else {
                 System.out.print("No se encontró un producto identificado por el código que ingresó.\n"
                         + "Quiere volver a intentarlo? [S/n] ");
@@ -275,10 +276,6 @@ public class Main {
             prod.setSiguiente(null);
         }
         listaMain.setCantidad(listaMain.getCantidad() - 1);
-    }
-
-    private static void mostrarPila() {
-
     }
 
 }
