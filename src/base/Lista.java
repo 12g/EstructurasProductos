@@ -52,7 +52,6 @@ public class Lista {
                 puntero = puntero.getSiguiente();
             } while (puntero != null);
             System.out.println("-------------------\n");
-            System.out.println("");
         }
     }
 
