@@ -61,6 +61,21 @@ public final class ListaProductos extends base.Lista {
             return puntero;
         }
     }
+    
+    /**
+     * Rompe cualquier enlace, dentro de la lista, a un Producto específico.
+     *
+     * @param prod El Producto a desenlazar de la lista.
+     */
+    public void eliminar(Producto anterior) {
+        Producto productoAEliminar = anterior.getSiguiente();
+        if (productoAEliminar != null && productoAEliminar.getSiguiente() != null) {
+            anterior.setSiguiente(productoAEliminar.getSiguiente());
+        } else {
+            anterior.setSiguiente(null);
+        }
+        --cantidad;
+    }
 
     @Override
     public Producto getBase() {

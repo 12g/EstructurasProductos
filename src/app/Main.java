@@ -70,7 +70,7 @@ public class Main {
                 case 5:
                     prod = encontrarProducto(true); //este "true" permite obtener el producto que referencia a aquel que realmente se busca
                     if (prod != null) {
-                        eliminarProducto(prod);
+                        listaMain.eliminar(prod);
                     }
                     break;
                 case 6:
@@ -261,21 +261,6 @@ public class Main {
             inputScanner.nextLine();
             System.out.println("\n");
         } while (!todoOK);
-    }
-
-    /**
-     * Rompe cualquier enlace, dentro de la lista, a un Producto específico.
-     *
-     * @param prod El Producto a desenlazar de la lista.
-     */
-    private static void eliminarProducto(Producto prod) {
-        Producto siguienteProducto = prod.getSiguiente();
-        if (siguienteProducto != null && siguienteProducto.getSiguiente() != null) {
-            prod.setSiguiente(siguienteProducto.getSiguiente());
-        } else {
-            prod.setSiguiente(null);
-        }
-        listaMain.setCantidad(listaMain.getCantidad() - 1);
     }
 
 }
