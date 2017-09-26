@@ -56,8 +56,8 @@ public final class ProductoPila extends base.Nodo {
         return true;
     }
 
-    public boolean setSiguiente(Producto siguiente) {
-        super.setSiguiente(siguiente);
+    public boolean setSiguiente(ProductoPila siguiente) {
+        this.siguiente = siguiente;
         return true;
     }
 
