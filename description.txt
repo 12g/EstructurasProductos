@@ -1,0 +1,20 @@
+CARACTERISTICAS
+*Implemente clases construidas Lista y Pila, ambas "contienen" Nodos (Productos).
+*Posea una clase Producto con los atributos "Codigo", "Nombre", "Descripcion", "Cantidad", "Precio" y "Stock Critico".
+
+REGLAS DE NEGOCIO
+*Codigo no se debe repetir
+*Cantidad, Stock Critico y Precio deben ser mayores a 0
+*Precio no debe ser mayor a 20000
+*Stock Critico debe ser menor a Cantidad
+*La Pila debe almacenar solamente el codigo nombre y precio de los nodos, y este precio debe estar en 5000 y 7000.
+
+
+MENU PRINCIPAL
+1. Ingresar producto : se piden los datos al usuario, el sistema lo ingresa a la Lista
+2. Modificar producto : se pide el codigo de un producto ingresado en la Lista, y luego solicitar los datos para actualizar dicho producto
+3. Mostrar Lista
+4. Llenar pila : segun la ultima regla de negocio anotada, y nunca se debe borrar ningun elemento ni deben existir duplicados.
+5. Eliminar producto en lista : se pide el codigo de un producto y se elimina si existe
+6. Mostrar Pila
+7. Salir : HA SALIDO
